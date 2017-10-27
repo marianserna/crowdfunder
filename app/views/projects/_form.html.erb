@@ -2,6 +2,11 @@
 
   <%= render 'partials/errors', object: @project %>
 
+  <div class="form-group">
+    <%= f.label :category %>
+    <%= f.collection_select :category_id, Category.order(:name), :id, :name, {}, class: 'form-control' %>
+  </div>
+
   <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -24,12 +29,12 @@
 
   <div>
     <%= f.label :start_date %>
-    <%= f.datetime_select :start_date %>
+    <%= f.datetime_field :start_date %>
   </div>
 
   <div>
     <%= f.label :end_date %>
-    <%= f.datetime_select :end_date %>
+    <%= f.datetime_field :end_date %>
   </div>
 
   <%= f.submit %>
