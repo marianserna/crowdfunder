@@ -1,0 +1,6 @@
+one:
+  first_name: Pablo
+  last_name: Perez
+  email: pablo@email.com
+  admin: true
+  password: password
