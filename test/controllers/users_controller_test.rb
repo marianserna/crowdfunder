@@ -38,7 +38,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should show user" do
     # login(@user)
     get user_url(@user)
-
+    
     assert_response :success
   end
 
