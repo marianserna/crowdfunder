@@ -12,6 +12,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
+gem 'webpacker', '~> 3.0', '>= 3.0.2'
 
 # Database
 gem 'pg'
