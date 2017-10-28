@@ -35,3 +35,13 @@
 <% end %>
 
 <%= link_to "Add new reward", new_project_reward_path(@project) %>
+
+
+<h2>Project Backers</h2>
+
+<% @project.pledges.each do |pledge| %>
+<p>
+  Name: <%= pledge.user.name %> <br>
+  Amount: $<%= pledge.dollar_amount %>
+</p>
+<% end %>
