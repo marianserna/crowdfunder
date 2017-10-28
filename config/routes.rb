@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+
+  get 'comments/destroy'
+
+  get 'comments/update'
+
+  get 'comments/edit'
+
   root "projects#index"
 
   get 'login' => 'user_sessions#new', :as => :login
@@ -8,7 +16,9 @@ Rails.application.routes.draw do
     resources :pledges, only: [:create]
     resources :rewards, only: [:new, :create, :destroy]
   end
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :show] do
+    resources :comments, only:[:create, :edit, :update, :destroy]
+  end
 
   resources :user_sessions, only: [:create]
 
