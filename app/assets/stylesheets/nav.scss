@@ -1,0 +1,53 @@
+.nav-container {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 100;
+
+  .site-nav {
+    width: 100%;
+    text-align: right;
+
+    a {
+      color: #8C95AA;
+      display: inline-block;
+      text-decoration: none;
+      margin-bottom: 15px;
+      transition: color 1s ease;
+
+      &:hover {
+        color: #FF6600;
+      }
+    }
+  }
+}
+
+.search-form {
+  opacity: 0;
+  transition: opacity 1s ease;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .form-group {
+      margin-bottom: 0px;
+    }
+
+    select {
+      height: 38px;
+      margin-right: 10px;
+    }
+
+    .btn {
+      margin: 0px;
+    }
+  }
+}

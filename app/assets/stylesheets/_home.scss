@@ -1,0 +1,45 @@
+.home-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.logo {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  background: -webkit-linear-gradient(#3A4660, #1F8AFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stats {
+  color: #FFF;
+  position: absolute;
+  bottom: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100vw;
+
+  .projects-stats {
+    width: 33.33%;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+}
+
+.home-img {
+  margin-top: 100px;
+  text-align: center;
+  width: 100vw;
+}
+
+.stats-result {
+  font-size: 1.5rem;
+  color: #8C95AA;
+
+  @media(max-width: 895px) {
+    font-size: 1.1rem;
+  }
+}
