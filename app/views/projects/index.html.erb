@@ -1,5 +1,22 @@
 <%= link_to "New Project", new_project_path %>
 
+
+<div class="row center">
+  <div class="col m12">
+    <%= form_tag(projects_url, method: :get, id: "search-form") do %>
+      <%= select_tag :category_id, options_for_select(Category.options_for_select, params[:category_id]) %>
+      <%= submit_tag 'Search', name: nil, class: 'btn' %>
+      <% if params[:category_id]%>
+        <%= link_to 'Clear', root_url, class: 'btn' %>
+      <% end %>
+    <% end %>
+
+    <% if params[:category_id] && @projects.empty? %>
+      Sorry, no results for <%= Category.find(params[:category_id]).name %>
+    <% end %>
+  </div>
+</div>
+
 <% @projects.each do |project| %>
   <article class="project">
     <%= link_to project, class: 'project-link' do %>
