@@ -11,6 +11,7 @@ html {
 img {
   max-width: 100%;
   height: auto;
+  margin-bottom: 50px;
 }
 
 figure {
@@ -37,6 +38,7 @@ header {
   height: 25vh;
 }
 
-a {
-  text-decoration: none;
+.flash-alert {
+  text-align: center;
+  color: #1098F7;
 }
