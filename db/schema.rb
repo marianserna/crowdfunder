@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20171030033711) do
     t.integer "project_id", null: false
     t.integer "user_id", null: false
     t.integer "reward_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_claims_on_project_id"
     t.index ["reward_id"], name: "index_claims_on_reward_id"
     t.index ["user_id"], name: "index_claims_on_user_id"
