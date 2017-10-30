@@ -32,9 +32,18 @@
     <% @project.rewards.each do |reward| %>
       <div class="reward">
         <p><%= number_to_currency(reward.dollar_amount) %> | <%= reward.description %></p>
-        <div class="remove-reward">
-          <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
-        </div>
+
+        <%= form_for [@project, Claim.new] do |f| %>
+          <%= f.submit "Claim Reward", class: 'btn btn-outline-primary m-0' %>
+        <% end %>
+      </div>
+
+<!-- can only see the remove reward if i am the project owner  -->
+        <% if current_user.id == @project.user_id%>
+          <div class="remove-reward">
+            <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
+          </div>
+        <% end %>
       </div>
     <% end %>
 
