@@ -1,0 +1,38 @@
+<div class="nav-container">
+  <nav class="site-nav">
+    <% unless @hide_home_link %>
+      <%= link_to "Home", root_path %>
+      <br>
+    <% end %>
+    <% if current_user %>
+      <%= link_to "Logout", :logout, method: :delete %>
+    <% else %>
+      <%= link_to "Register", new_user_path %> |
+      <%= link_to "Login", :login %>
+    <% end %>
+
+    <div class="all-projects-link">
+      <%= link_to 'All Projects', projects_path %>
+    </div>
+
+    <div class="projects-search">
+      <%= link_to 'Search', '#', class: 'trigger-search' %>
+    </div>
+
+    <div class="search-form">
+      <%= form_tag(projects_url, method: :get, id: "search-form") do %>
+        <div class="form-group">
+          <%= select_tag :category_id, options_for_select(Category.options_for_select, params[:category_id]) %>
+        </div>
+        <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-primary' %>
+        <% if params[:category_id]%>
+          <%= link_to 'Clear', root_url, class: 'btn btn-outline-primary' %>
+        <% end %>
+      <% end %>
+
+      <% if params[:category_id] && @projects.empty? %>
+        Sorry, no results for <%= Category.find(params[:category_id]).name %>
+      <% end %>
+    </div>
+  </nav>
+</div>

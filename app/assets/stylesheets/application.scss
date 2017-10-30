@@ -6,6 +6,7 @@
 // Third-party stylesheets
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "bootstrap";
 
 // Base styles
 @import 'variables';
@@ -16,3 +17,6 @@
 
 // Module styles
 @import 'projects';
+@import 'home';
+@import 'nav';
+@import 'users';

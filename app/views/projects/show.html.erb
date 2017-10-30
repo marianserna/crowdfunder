@@ -1,41 +1,75 @@
-<h1><%= @project.title %></h1>
+<div class="projects-info">
+  <h1><%= @project.title %></h1>
 
-<% if @project.image.present? %>
-  <%= image_tag @project.image %>
-<% end %>
+  <div class="project-basics">
+    <% if @project.image.present? %>
+      <%= image_tag @project.image %>
+    <% end %>
 
-<h3>Project Owner:
-  <%= link_to @project.user.name, user_path %>
-</h3>
+    <h3>Project Owner:
+      <%= link_to @project.user.name, user_path(@project.user) %>
+    </h3>
 
-<h3>Amount Pledged:
-  <%= @project.total_pledged_in_project %>
-</h3>
+    <h3>Amount Pledged:
+      $<%= @project.total_pledged_in_project %>
+    </h3>
 
-<p><%= @project.description %></p>
-<p>Goal: <%= number_to_currency(@project.goal) %></p>
-<p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
-<p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
-<% if @project.backed_up?(current_user) %>
-<p>You have alreday back up</p>
+    <p><%= @project.description %></p>
+    <p>Goal: <%= number_to_currency(@project.goal) %></p>
+    <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
+    <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
+    
+    <% if @project.backed_up?(current_user) %>
+      <p>You have alreday back up</p>
+    <% end %>
 
-<% end %>
+    <%= form_for [@project, Pledge.new] do |f| %>
+      <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01, class: 'input-num' %>
+      <%= f.submit "Pledge", class: 'btn btn-outline-primary m-0' %>
+    <% end %>
+  </div>
 
-<%= form_for [@project, Pledge.new] do |f| %>
-  <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
-  <%= f.submit "Pledge" %>
-<% end %>
+  <hr>
 
-<h2>Rewards</h2>
-<% @project.rewards.each do |reward| %>
-  <p><%= number_to_currency(reward.dollar_amount) %></p>
-  <p><%= reward.description %></p>
+  <h2>Rewards</h2>
+  <div class="project-rewards">
+    <% @project.rewards.each do |reward| %>
+      <div class="reward">
+        <p><%= number_to_currency(reward.dollar_amount) %> | <%= reward.description %></p>
 
-  <p>
-    <small>
-      <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
-    </small>
-  </p>
-<% end %>
+        <%= form_for [@project, Claim.new] do |f| %>
+          <%= f.submit "Claim Reward", class: 'btn btn-outline-primary m-0' %>
+        <% end %>
+      </div>
 
-<%= link_to "Add new reward", new_project_reward_path(@project) %>
+<!-- can only see the remove reward if i am the project owner  -->
+        <% if current_user.id == @project.user_id%>
+          <div class="remove-reward">
+            <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="add-reward">
+      <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary' %>
+    </div>
+
+    <% if current_user == @project.user %>
+
+      <h2>Project Backers</h2>
+    <div class="project-backers">
+      <% @project.pledges.each do |pledge| %>
+        <div class="backer">
+          <p>
+            Name: <%= pledge.user.name %> Pledged: $<%= pledge.dollar_amount %>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+
+  </div>
+
+
+</div>

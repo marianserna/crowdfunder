@@ -1,0 +1,45 @@
+.home-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.logo {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  background: -webkit-linear-gradient(to right, #DD2476, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #DD2476, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stats {
+  color: #FFF;
+  position: absolute;
+  bottom: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100vw;
+
+  .projects-stats {
+    width: 33.33%;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+}
+
+.home-img {
+  text-align: center;
+  width: 100vw;
+}
+
+.stats-result {
+  font-size: 1.5rem;
+  color: #8C95AA;
+
+  @media(max-width: 895px) {
+    font-size: 1.1rem;
+  }
+}
