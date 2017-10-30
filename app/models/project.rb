@@ -28,4 +28,9 @@ class Project < ActiveRecord::Base
   def total_pledged_in_project
     self.pledges.sum(:dollar_amount)
   end
+
+  def backed_up?(current_user)
+    return self.users.include?(current_user)
+  end
+
 end

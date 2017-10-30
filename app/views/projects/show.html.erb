@@ -18,6 +18,10 @@
     <p>Goal: <%= number_to_currency(@project.goal) %></p>
     <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
     <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
+    
+    <% if @project.backed_up?(current_user) %>
+      <p>You have alreday back up</p>
+    <% end %>
 
     <%= form_for [@project, Pledge.new] do |f| %>
       <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01, class: 'input-num' %>
