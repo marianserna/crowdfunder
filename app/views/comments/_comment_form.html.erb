@@ -1,0 +1,14 @@
+<%= form_for [project, comment] do |f| %>
+<% comment.errors.full_messages.each do |m|%>
+<p>
+  <%= m %>
+</p>
+<% end %>
+  <div class="field">
+    <%= f.label :text %>
+    <%= f.text_field :text %>
+  </div>
+  <div class="actions">
+    <%= f.submit data: { confirm: "You have made a comment!"} %>
+  </div>
+<% end %>
