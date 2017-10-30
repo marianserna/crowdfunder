@@ -28,4 +28,5 @@ class ClaimsController < ApplicationController
   def load_reward
     @reward = Reward.find(params[:project_id])
   end
+
 end
