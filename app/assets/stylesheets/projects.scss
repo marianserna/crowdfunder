@@ -110,6 +110,20 @@
     margin: 30px;
   }
 
+  .project-backers {
+    margin-top: 50px;
+
+    .backer {
+      display: flex;
+      width: 70%;
+      margin: 0 auto;
+
+      p {
+        flex-grow: 2;
+      }
+    }
+  }
+
   @media(max-width: 895px) {
     width: 95vw;
 
@@ -123,7 +137,14 @@
         padding-bottom: 10px;
       }
 
-      .reward, .remove-reward {
+    .project-backers {
+      .backer {
+        flex-wrap: wrap;
+        padding-bottom: 10px;
+      }
+    }
+
+      .reward, .remove-reward, .backer {
         width: 100%;
       }
     }

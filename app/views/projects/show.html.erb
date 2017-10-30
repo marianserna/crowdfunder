@@ -41,6 +41,21 @@
     <div class="add-reward">
       <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary' %>
     </div>
+
+    <% if current_user.id == @project.user_id%>
+
+      <h2>Project Backers</h2>
+    <div class="project-backers">
+      <% @project.pledges.each do |pledge| %>
+        <div class="backer">
+          <p>
+            Name: <%= pledge.user.name %> Pledged: $<%= pledge.dollar_amount %>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+
   </div>
 
 
