@@ -9,7 +9,6 @@ class ClaimsController < ApplicationController
     @claim.user_id = current_user.id
     @claim.reward_id = @reward.id
 
-
     # need to add a condition that checks the amount being claims matches the amount pleged by the user
     if @claim.save
       redirect_to project_url(@project), notice: "You have successfully claimed your reward!"
