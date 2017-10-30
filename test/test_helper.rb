@@ -19,3 +19,7 @@ class ActionController::TestCase
   include Sorcery::TestHelpers::Rails::Integration
   include Sorcery::TestHelpers::Rails::Controller
 end
+
+class ActionDispatch::IntegrationTest
+  include FactoryBot::Syntax::Methods
+end

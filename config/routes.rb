@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "projects#index"
+  root "home#show"
 
   get 'login' => 'user_sessions#new', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :new, :create, :show] do
     resources :pledges, only: [:create]
     resources :rewards, only: [:new, :create, :destroy]
+    resources :claims, only: [:create] # added route for the new claims table, we only want to create a new record like pledges
   end
   resources :users, only: [:new, :create, :show]
-
   resources :user_sessions, only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.
