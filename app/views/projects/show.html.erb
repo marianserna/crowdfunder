@@ -16,6 +16,7 @@
 <p>Goal: <%= number_to_currency(@project.goal) %></p>
 <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
 <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
+<p><%= icon('clock-o') %> <%=time_ago_in_words(@project.end_date)%> <%= @project.remaining_time %></p>
 <% if @project.backed_up?(current_user) %>
 <p>You have alreday backed up <%= @project.title %> </p>
 
