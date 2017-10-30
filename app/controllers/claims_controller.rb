@@ -8,7 +8,7 @@ class ClaimsController < ApplicationController
     @claim.user_id = current_user
     @claim.reward_id = params[:reward][:id]
 
-    if @claim.save
+    if @claim.save && @claim.uniq!
       redirect_to project_url(@project), notice: "You have successfully claimed #{@project.claims.description}!"
     else
       flash.now[:alert] = @claim.errors.full_messages.first
