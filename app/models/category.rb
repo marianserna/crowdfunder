@@ -1,6 +1,5 @@
 class Category < ApplicationRecord
-  belongs_to :project
-
+  has_many :projects
   def self.options_for_select
     Category.order(:name).pluck(:name, :id)
     # OR
