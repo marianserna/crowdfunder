@@ -36,4 +36,15 @@
 
 <%= link_to "Add new reward", new_project_reward_path(@project) %>
 
+
+
+<h3> Leave a Comment </h3>
 <%= render 'comments/comment_form', project: @project, comment: @comment %>
+
+
+
+<h2> Comments: </h2>
+<% @comments.each do |comment| %>
+<%= comment.text %>
+<%= link_to "Delete Comment", project_comment_path(@project, comment), method: :delete, data: {confirm: "Are you sure you want to delete this project"}  %>
+<% end %>
