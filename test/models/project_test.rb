@@ -66,17 +66,38 @@ class ProjectTest < ActiveSupport::TestCase
 
     assert_equal project1.total_pledged_in_project, 0
 
-    pledge = create(
-      :pledge,
-      dollar_amount:  99.00,
-      project:        project1,
-      user:           user2
-    )
+      pledge = create(
+        :pledge,
+        dollar_amount:  99.00,
+        project:        project1,
+        user:           user2
+      )
 
-    assert_equal project1.total_pledged_in_project, 99.00
+      assert_equal project1.total_pledged_in_project, 99.00
+    end
+
+    test 'current user have not backed up this project' do
+     current_user = create(:user, admin: false)
+     owner_user = create(:user)
+     pledge_user = create(:user, admin: false)
+
+     project = create(:project, user: owner_user)
+     pledge = create(:pledge, user: pledge_user, project: project)
+
+     result = project.backed_up?(current_user)
+
+     assert_equal(false, result)
+    end
+
+  test 'current user have backed up this project' do
+   current_user = create(:user, admin: false)
+   owner_user = create(:user)
+
+   project = create(:project, user: owner_user)
+   pledge = create(:pledge, user: current_user, project: project)
+   result = project.backed_up?(current_user)
+
+  #  binding.pry
+   assert_equal(true, result)
   end
-
-  # test 'current user have not backed up this project' do
-  #
-  # end
 end
