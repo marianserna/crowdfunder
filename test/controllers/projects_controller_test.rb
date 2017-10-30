@@ -1,28 +1,8 @@
 require 'test_helper'
 
 class ProjectsControllerTest < ActionDispatch::IntegrationTest
-  def create_project
-    Project.create(
-      title:       'Cool new boardgame',
-      description: 'Trade sheep',
-      start_date:  Date.tomorrow,
-      end_date:    Date.tomorrow + 1.month,
-      goal:        50000,
-      user:        create_user
-    )
-  end
 
-  def create_user
-    User.create(
-      first_name:            'Sally',
-      last_name:             'Lowenthal',
-      email:                 'sally@example.com',
-      password:              'passpass',
-      password_confirmation: 'passpass'
-    )
-  end
-
-  # Using factory bot
+  # Refactoring to use factory bot
   test "should get index" do
     category1 = create(:category)
     category2 = create(:category)
@@ -66,7 +46,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   # end
 
   test "should show project" do
-    project = create_project
+    project = create(:project)
     get project_url(project)
 
     assert_response :success

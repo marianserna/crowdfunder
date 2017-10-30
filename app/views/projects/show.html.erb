@@ -51,7 +51,7 @@
       <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary' %>
     </div>
 
-    <% if current_user.id == @project.user_id%>
+    <% if current_user == @project.user %>
 
       <h2>Project Backers</h2>
     <div class="project-backers">

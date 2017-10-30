@@ -46,4 +46,5 @@ group :test do
   gem 'simplecov', require: false
   gem 'guard', '~> 2.14.0'
   gem 'guard-minitest'
+  gem 'pry', '~> 0.11.2'
 end
