@@ -40,6 +40,15 @@ class ProjectTest < ActiveSupport::TestCase
     )
   end
 
+  # def new_pledge
+  #   Pledge.new(
+  #     user_id: current_user[:id]
+  #     dollar_amount: 10
+  #     project_id: project.id
+  #     user_id: user.id
+  #   )
+  # end
+
   test 'project start date is in future' do
     user = new_user
     user.save!
@@ -94,4 +103,8 @@ class ProjectTest < ActiveSupport::TestCase
 
     assert_equal project1.total_pledged_in_project, 99.00
   end
+
+  # test 'current user have not backed up this project' do
+  #
+  # end
 end
