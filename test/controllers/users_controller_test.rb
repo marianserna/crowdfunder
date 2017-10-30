@@ -1,19 +1,10 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    # @user = users(:one)
-    @user = User.create!(
-      first_name: "Pablo",
-      last_name: "Perez",
-      email: "pablo@email.com",
-      admin: true,
-      password: "password",
-      password_confirmation: "password"
-    )
-  end
 
   def login(user)
+    user = create(:user)
+
     post user_sessions_url, params: {email: user.email, password: "password"}
   end
 
@@ -37,8 +28,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should show user" do
     # login(@user)
-    get user_url(@user)
-    
+    user = create(:user)
+    get user_url(user)
+
     assert_response :success
   end
 
