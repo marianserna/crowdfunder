@@ -14,7 +14,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   def login(user)
-    post user_sessions_url, params: {email: user.email, password: "password"}
+    post user_sessions_url, params: { email: user.email, password: "password" }
   end
 
   # test "should get index" do
@@ -38,7 +38,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should show user" do
     # login(@user)
     get user_url(@user)
-    
+
     assert_response :success
   end
 
