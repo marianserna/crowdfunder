@@ -17,7 +17,7 @@
 <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
 <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
 <% if @project.backed_up?(current_user) %>
-<p>You have alreday back up</p>
+<p>You have alreday backed up <%= @project.title %> </p>
 
 <% end %>
 
