@@ -10,12 +10,12 @@ class ClaimsController < ApplicationController
     @claim.reward_id = @reward.id
 
     # need to add a condition that checks the amount being claims matches the amount pleged by the user
-    if Pledge.select([:user_id, :project_id]).where({ user_id: @claim.user_id }).sum(:dollar_amount) < @reward.dollar_amount
+    if pledged_total_per_user < @reward.dollar_amount
 
       flash.now[:alert] = "Sorry but you have do not have enough pledged to claimed this reward"
       render 'projects/show'
 
-    elsif Claim.where(user_id: @claim.user_id).where(project_id: @claim.project_id).where(reward_id: @claim.reward_id).count > 0
+    elsif already_claimed?
       flash.now[:alert] = "Sorry but you have already claimed this reward"
       render 'projects/show'
 
@@ -40,5 +40,17 @@ class ClaimsController < ApplicationController
   def load_pledge
     @pledge = Pledge.find(params[:project_id])
   end
+
+  private
+
+  def pledged_total_per_user
+    Pledge.select([:user_id, :project_id]).where({ user_id: @claim.user_id }).sum(:dollar_amount)
+  end
+  helper_method :pledged_total_per_user
+
+  def already_claimed?
+    Claim.where(user_id: @claim.user_id).where(project_id: @claim.project_id).where(reward_id: @claim.reward_id).count > 0
+  end
+  helper_method :already_claimed?
 
 end
