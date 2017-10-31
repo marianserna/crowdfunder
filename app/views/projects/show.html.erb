@@ -67,15 +67,14 @@
       </div>
     <% end %>
 
-    <h2>Project Backers</h2>
+    <h2>Rewards Claimed Summary</h2>
     <div class="project-backers">
-      <% @project.claims.each do |claim| %>
         <div class="backer">
           <p>
-            ID: <%= claim.id %> project_id <%= claim.project_id %>
+            <h3>Summary: </h3>A total of <%=@project.claims.count%> rewards have been claimed
           </p>
         </div>
-      <% end %>
+
     </div>
 
 
