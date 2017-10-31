@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_project_owner?
-   current_user == @project.user
+    current_user == @project.user
   end
   helper_method :is_project_owner?
 end

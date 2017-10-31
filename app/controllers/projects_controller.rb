@@ -38,15 +38,9 @@ class ProjectsController < ApplicationController
    end
 
    private
-   def claimed_summary
-     Claim.where(project_id: @project.id).count
-   end
-   helper_method :claimed_summary
-
-   def is_project_owner?
-    current_user == @project.user
-   end
-   helper_method :is_project_owner?
-
+  def claimed_summary
+    Claim.where(project_id: @project.id).count
+  end
+  helper_method :claimed_summary
 
 end
