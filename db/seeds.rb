@@ -15,10 +15,6 @@ end
 
 10.times do
   project = Project.create!(
-<<<<<<< HEAD
-=======
-
->>>>>>> 573784d07e12803b8651b229c3d80d72aa661102
       title: Faker::App.name,
       description: Faker::Lorem.paragraph,
       goal: rand(100000),
@@ -36,10 +32,6 @@ end
 end
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 573784d07e12803b8651b229c3d80d72aa661102
 20.times do
   project = Project.all.sample
   user = User.all.sample
