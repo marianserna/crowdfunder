@@ -1,8 +1,8 @@
-<h2><%= @user.name %></h2>
+<h2><%= @user.name.upcase %></h2>
 
 <div class="user-info">
   <div class="user-info-item">
-    <h3>Projects Backed</h3>
+    <h3>PROJECTS BACKED</h3>
 
     <ul>
       <% @user.pledges.each do |pledge| %>
@@ -14,12 +14,16 @@
   </div>
 
   <div class="user-info-item">
-    <h3>Total Pledged</h3>
-    <div><%= @user.total_pledged %></div>
+    <h3>TOTAL PLEDGED</h3>
+    <ul>
+      <li>
+        <%= number_to_currency(@user.total_pledged) %>
+      </li>
+    </ul>
   </div>
 
   <div class="user-info-item">
-    <h3>Projects Owned</h3>
+    <h3>PROJECTS OWNED</h3>
     <ul>
       <% @user.projects.each do |project| %>
         <li>
