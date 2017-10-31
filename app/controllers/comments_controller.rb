@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
+    @comment = Comment.create(comment_params)
     @project = Project.find(params[:project_id])
     @comment.project = @project
     @comment.user = current_user
@@ -12,9 +12,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    find_comment
+    @comment = Comment.find(params[:project_id])
     @comment.destroy
   end
+
 
   def update
   end
@@ -28,8 +29,5 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:text)
   end
 
-  def find_comment
-    @comment = Comment.find(params[:id])
-  end
 
 end
