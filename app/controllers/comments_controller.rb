@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @comment.project = @project
     @comment.user = current_user
     if @comment.save
+      flash.now[:alert] = "Your Comment Has Been Saved!"
       redirect_to project_path(@project)
     else
       render  'projects/show'
@@ -24,7 +25,8 @@ class CommentsController < ApplicationController
     find_comment
     find_project
     if @comment.update(comment_params)
-    redirect_to project_path(@project)
+      flash.now[:alert] = "Your Comment Has Been Updated!"
+      redirect_to project_path(@project)
     else
       redirect_back_or_to project_path(@project)
     end
