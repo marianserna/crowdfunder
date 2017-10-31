@@ -33,6 +33,15 @@
 .home-img {
   text-align: center;
   width: 100vw;
+
+  img {
+    transform: skewX(0deg);
+    transition: transform 1s ease;
+
+    &:hover {
+      transform: rotateY(180deg);
+    }
+  }
 }
 
 .stats-result {
