@@ -9,5 +9,6 @@
 
 // import './src/transition';
 import './src/search';
+import './src/masonry';
 import Rails from 'rails-ujs';
 Rails.start();
