@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
   def index
-    @projects = Project.order(:end_date)
+    @projects = Project.active.order(:end_date)
 
     if params[:category_id]
       @projects = @projects.where(category_id: params[:category_id])

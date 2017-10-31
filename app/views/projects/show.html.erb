@@ -1,17 +1,16 @@
-
 <div class="projects-info">
   <h1><%= @project.title %></h1>
 
   <div class="project-basics">
     <% if @project.image.present? %>
-      <%= image_tag @project.image %>
+    <%= image_tag @project.image %>
     <% end %>
 
     <h3>Project Owner:
-      <%= link_to @project.user.name, user_path(@project.user) %>
+      <%= link_to @project.user.name.titleize, user_path(@project.user) %>
     </h3>
 
-    <h3>Total Amount Pledged for this project:
+    <h3>Amount Pledged:
       $<%= @project.total_pledged_in_project %>
     </h3>
 
@@ -34,51 +33,41 @@
       <div class="reward">
         <p><%= number_to_currency(reward.dollar_amount) %> | <%= reward.description %></p>
 
+        <!-- Form not sending right data -->
         <%= form_for [@project, Claim.new] do |f| %>
+          <!-- need to send data about which reward is the user claiming -->
+          <%= f.hidden_field :reward_id, value: reward.id %>
           <%= f.submit "Claim Reward", class: 'btn btn-outline-primary m-0' %>
-        <% end %>
-      </div>
 
-<!-- can only see the remove reward if i am the project owner  -->
-
-        <% if is_project_owner?%>
-          <div class="remove-reward">
+          <!-- can only see the remove reward if i am the project owner  -->
+          <% if current_user == @project.user %>
             <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
-          </div>
+          <% end %>
         <% end %>
       </div>
     <% end %>
+  </div>
 
-    <div class="add-reward">
-      <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary' %>
-    </div>
+  <div class="add-reward">
+    <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary' %>
+  </div>
 
-    <% if is_project_owner?%>
+  <% if current_user == @project.user %>
+    <hr>
 
-      <h2>Project Backers</h2>
-      <div class="project-backers">
-        <% @project.pledges.each do |pledge| %>
+    <h2>Project Backers</h2>
+
+    <div class="project-backers">
+      <% @project.pledges.each do |pledge| %>
+        <% if pledge.persisted? %>
           <div class="backer">
             <p>
-              Name: <%= pledge.user.name %> Pledged: $<%= pledge.dollar_amount %>
+              <%= pledge.user.name.titleize %> pledged $<%= pledge.dollar_amount %>
             </p>
           </div>
         <% end %>
-      </div>
-    <% end %>
-
-    <h2>Rewards Claimed Summary</h2>
-    <div class="project-backers">
-        <div class="backer">
-          <p>
-            <h3>Summary: </h3>A total of <%=@project.claims.count%> rewards have been claimed
-          </p>
-        </div>
-
+      <% end %>
     </div>
-
-
-  </div>
-
+  <% end %>
 
 </div>
