@@ -1,0 +1,30 @@
+<div class="home-container">
+  <section class="stats">
+    <section class="projects-stats started">
+      <h3>PROJECTS STARTED</h3>
+      <div class="stats-result">
+        <%= @total_projects %>
+      </div>
+    </section>
+    <section class="projects-stats funded">
+      <h3>PROJECTS FUNDED</h3>
+      <div class="stats-result">
+        <%= @projects_funded %>
+      </div>
+    </section>
+    <section class="projects-stats total-pledged">
+      <h3>TOTAL PLEDGED</h3>
+      <div class="stats-result">
+        <%= number_to_currency(@total_pledged) %>
+      </div>
+    </section>
+  </section>
+
+  <section class="home-img">
+    <%= image_tag "toonie.png", alt:"coin" %>
+  </section>
+
+  <footer class="site-footer">
+    <small>A Bitmaker assignment</small>
+  </footer>
+</div>

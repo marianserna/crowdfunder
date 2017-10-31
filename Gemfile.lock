@@ -40,8 +40,14 @@ GEM
       tzinfo (~> 1.1)
     ansi (1.5.0)
     arel (8.0.0)
+    autoprefixer-rails (7.1.6)
+      execjs
     bcrypt (3.1.11)
     bindex (0.5.0)
+    bootstrap (4.0.0.beta2.1)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.3, < 2)
+      sass (>= 3.5.2)
     builder (3.2.3)
     byebug (9.1.0)
     coderay (1.1.2)
@@ -50,6 +56,11 @@ GEM
     docile (1.1.5)
     erubi (1.7.0)
     execjs (2.7.0)
+    factory_bot (4.8.2)
+      activesupport (>= 3.0.0)
+    factory_bot_rails (4.8.2)
+      factory_bot (~> 4.8.2)
+      railties (>= 3.0.0)
     faker (1.8.4)
       i18n (~> 0.5)
     faraday (0.12.2)
@@ -125,6 +136,7 @@ GEM
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
     pg (0.21.0)
+    popper_js (1.12.5)
     pry (0.11.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -166,7 +178,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     ruby-progressbar (1.9.0)
-    sass (3.5.2)
+    sass (3.5.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -202,7 +214,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tzinfo (1.2.3)
+    tzinfo (1.2.4)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
@@ -224,7 +236,9 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  bootstrap (~> 4.0.0.beta2.1)
   byebug
+  factory_bot_rails (~> 4.8, >= 4.8.2)
   faker
   font-awesome-sass (~> 4.7.0)
   guard (~> 2.14.0)
@@ -235,8 +249,9 @@ DEPENDENCIES
   minitest-rails
   minitest-reporters
   pg
+  pry (~> 0.11.2)
   puma (~> 3.0)
-  rails (~> 5.1.1)
+  rails (~> 5.1.4)
   rails-controller-testing
   sass-rails
   simplecov
@@ -248,4 +263,4 @@ DEPENDENCIES
   webpacker (~> 3.0, >= 3.0.2)
 
 BUNDLED WITH
-   1.15.1
+   1.16.0.pre.2

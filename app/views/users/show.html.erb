@@ -1,26 +1,36 @@
-<h2><%= @user.name %></h2>
+<h2><%= @user.name.upcase %></h2>
 
-<h3>Projects Backed</h3>
+<div class="user-info">
+  <div class="user-info-item">
+    <h3>PROJECTS BACKED</h3>
 
-<ul>
-  <% @user.pledges.each do |pledge| %>
-    <li>
-      <%= pledge.project.title %>
-    </li>
-  <% end %>
-</ul>
+    <ul>
+      <% @user.pledges.each do |pledge| %>
+        <li>
+          <%= pledge.project.title %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<hr>
-<h3>Total Pledged</h3>
-<%= @user.total_pledged %>
-<hr>
+  <div class="user-info-item">
+    <h3>TOTAL PLEDGED</h3>
+    <ul>
+      <li>
+        <%= number_to_currency(@user.total_pledged) %>
+      </li>
+    </ul>
+  </div>
 
-<h3>Projects Owned</h3>
+  <div class="user-info-item">
+    <h3>PROJECTS OWNED</h3>
+    <ul>
+      <% @user.projects.each do |project| %>
+        <li>
+          <%= project.title %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<ul>
-  <% @user.projects.each do |project| %>
-    <li>
-      <%= project.title %>
-    </li>
-  <% end %>
-</ul>
+</div>

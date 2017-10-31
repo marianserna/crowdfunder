@@ -16,8 +16,13 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    if !current_user
+    unless current_user
       not_authenticated
     end
   end
+
+  def is_project_owner?
+   current_user == @project.user
+  end
+  helper_method :is_project_owner?
 end

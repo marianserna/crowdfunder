@@ -1,12 +1,36 @@
-// Place all the styles related to the projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.projects-container {
+  width: 70vw;
+  margin: 0 auto;
+
+  @media(max-width: 895) {
+    width: 95vw;
+  }
+}
+
+.new-project {
+  width: 100%;
+}
+
+.projects {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  @media(max-width: 895px) {
+    display: block;
+  }
+}
 
 .project {
   text-align: center;
   margin: 1rem 0;
   padding: 1rem 0;
-  background-color: #f9f9f9;
+  width: calc(33.33% - 2rem);
+  justify-content: center;
+
+  @media(max-width: 895px) {
+    width: 100%;
+  }
 }
 
 .project-image > img {
@@ -16,7 +40,10 @@
 .project-link {
   display: block;
   text-decoration: none;
-  color: cadetblue;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .project-title {
@@ -25,4 +52,114 @@
 
 .project-days-left {
   font-size: 0.75em;
+}
+
+.projects-info {
+  width: 70vw;
+  margin: 0 auto;
+
+  .project-basics {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: left;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  form {
+    text-align: right;
+
+    .input-num {
+      height: 36px;
+    }
+
+    @media(max-width: 895px) {
+      text-align: center;
+    }
+  }
+
+  .new_pledge {
+    text-align: center;
+  }
+
+  p {
+    color: #8C95AA;
+  }
+
+  hr {
+    border: 0.5px solid #8C95AA;
+  }
+
+  h3 {
+    border: none;
+  }
+
+  .project-rewards {
+    margin-top: 50px;
+
+    .reward {
+      display: flex;
+      width: 70%;
+      margin: 0 auto;
+
+      p {
+        flex-grow: 2;
+      }
+    }
+
+    .remove-reward {
+      width: 150px;
+    }
+  }
+
+  .add-reward {
+    text-align: right;
+    margin: 30px;
+  }
+
+  .project-backers {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    .backer {
+      display: flex;
+      width: 70%;
+      margin: 0 auto;
+
+      p {
+        flex-grow: 2;
+      }
+    }
+  }
+
+  @media(max-width: 895px) {
+    width: 95vw;
+
+    .project-basics {
+      width: 100%;
+    }
+
+    .project-rewards {
+      .reward {
+        flex-wrap: wrap;
+        padding-bottom: 10px;
+      }
+
+    .project-backers {
+      .backer {
+        flex-wrap: wrap;
+        padding-bottom: 10px;
+      }
+    }
+
+      .reward, .remove-reward, .backer {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.project-days-left {
+  color: #6ED3CF;
 }

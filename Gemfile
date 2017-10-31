@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Core Project
-gem 'rails', '~> 5.1.1'
+gem 'rails', '~> 5.1.4'
 gem 'puma', '~> 3.0'
 
 # Styles
@@ -21,10 +21,14 @@ gem 'pg'
 gem 'bcrypt', '~> 3.1.7'
 gem 'sorcery'
 
+# Styling
+gem 'bootstrap', '~> 4.0.0.beta2.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'faker'
+  gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
 end
 
 group :development do
@@ -42,4 +46,5 @@ group :test do
   gem 'simplecov', require: false
   gem 'guard', '~> 2.14.0'
   gem 'guard-minitest'
+  gem 'pry', '~> 0.11.2'
 end

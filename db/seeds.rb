@@ -15,6 +15,7 @@ end
 
 10.times do
   project = Project.create!(
+
       title: Faker::App.name,
       description: Faker::Lorem.paragraph,
       goal: rand(100000),
@@ -30,6 +31,7 @@ end
       )
     end
 end
+
 
 
 20.times do

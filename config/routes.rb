@@ -1,14 +1,6 @@
 Rails.application.routes.draw do
-  get 'comments/create'
-
-  get 'comments/destroy'
-
-  get 'comments/update'
-
-  get 'comments/edit'
-
-  root "projects#index"
-
+  root "home#show"
+  
   get 'login' => 'user_sessions#new', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
 
@@ -17,8 +9,12 @@ Rails.application.routes.draw do
     resources :rewards, only: [:new, :create, :destroy]
     resources :comments, only: %i(create destroy update edit)
   end
+  
   resources :users, only: [:new, :create, :show] do
     resources :comments, only:[:create, :edit, :update, :destroy]
+  end
+  
+    resources :claims, only: [:create] # added route for the new claims table, we only want to create a new record like pledges
   end
 
   resources :user_sessions, only: [:create]
