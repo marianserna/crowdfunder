@@ -10,7 +10,11 @@ class ClaimsController < ApplicationController
     @claim.reward_id = @reward.id
 
     # need to add a condition that checks the amount being claims matches the amount pleged by the user
-    if @claim.save
+    if Claim.where(user_id: @claim.user_id).where(project_id: @claim.project_id).where(reward_id: @claim.reward_id).count > 0
+      flash.now[:alert] = "Sorry but you have already claimed this reward"
+      render 'projects/show'
+
+    elsif @claim.save
       redirect_to project_url(@project), notice: "You have successfully claimed your reward!"
     else
       flash.now[:alert] = @claim.errors.full_messages.first
