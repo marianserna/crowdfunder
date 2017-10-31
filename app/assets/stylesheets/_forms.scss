@@ -13,14 +13,12 @@ form {
 }
 
 .form-control {
-  background-color: #E6E6E6;
   color: #FF6600;
-  border: none;
-  border-radius: 0px !important;
-}
-
-select {
-  border-radius: 0px !important;
+  outline: 0;
+  border: 0;
+  background: none;
+  border-bottom: 2px dotted #8C95AA;
+  border-radius: 0px;
 }
 
 .btn {
@@ -32,5 +30,6 @@ label {
 }
 
 input:focus, .form-control:focus {
+  outline: none;
   color: #FF6600;
 }

@@ -251,7 +251,7 @@ DEPENDENCIES
   pg
   pry (~> 0.11.2)
   puma (~> 3.0)
-  rails (~> 5.1.1)
+  rails (~> 5.1.4)
   rails-controller-testing
   sass-rails
   simplecov

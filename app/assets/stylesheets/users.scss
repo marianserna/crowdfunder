@@ -3,10 +3,11 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 
   h3 {
-    color: #8C95AA;
+    color: #007bff;
+    border-bottom: 1px solid #007bff;
   }
 
   .user-info-item {
@@ -15,8 +16,13 @@
     width: 33.3%;
   }
 
+  ul {
+    padding: 0px;
+  }
+
   ul li {
     list-style: none;
+    color: #8C95AA;
   }
 
   @media(max-width: 895px) {

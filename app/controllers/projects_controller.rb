@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
   def index
-    @projects = Project.order(:end_date)
+    @projects = Project.active.order(:end_date)
 
     if params[:category_id]
       @projects = @projects.where(category_id: params[:category_id])
@@ -11,6 +11,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.all
   end
 
   def new
@@ -37,7 +39,16 @@ class ProjectsController < ApplicationController
     end
    end
 
+   private
+   def claimed_summary
+     Claim.where(project_id: @project.id).count
+   end
+   helper_method :claimed_summary
 
+   def is_project_owner?
+    current_user == @project.user
+   end
+   helper_method :is_project_owner?
 
 
 end
