@@ -1,23 +1,18 @@
 Rails.application.routes.draw do
   root "home#show"
-  
+
   get 'login' => 'user_sessions#new', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
 
   resources :projects, only: [:index, :new, :create, :show] do
     resources :pledges, only: [:create]
     resources :rewards, only: [:new, :create, :destroy]
-    resources :comments, only: %i(create destroy update edit)
-  end
-  
-  resources :users, only: [:new, :create, :show] do
-    resources :comments, only:[:create, :edit, :update, :destroy]
-  end
-  
     resources :claims, only: [:create] # added route for the new claims table, we only want to create a new record like pledges
   end
-
+  resources :users, only: [:new, :create, :show]
   resources :user_sessions, only: [:create]
+
+end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -73,4 +68,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
