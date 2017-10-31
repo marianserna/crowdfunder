@@ -100,4 +100,22 @@ class ProjectTest < ActiveSupport::TestCase
   #  binding.pry
    assert_equal(true, result)
   end
+
+  test "display project time remaining" do
+    project = create(:project, end_date: (DateTime.current + 1.day))
+
+    expect = 'remaining'
+    result = project.remaining_time
+
+    assert_equal(expect, result)
+  end
+
+  test "display project time past due" do
+    project = build(:project, end_date: (DateTime.current - 1.day), start_date: (DateTime.current - 2.day))
+
+    expect = 'past deadline'
+    result = project.remaining_time
+
+    assert_equal(expect, result)
+  end
 end
