@@ -11,7 +11,7 @@
       <%= link_to @project.user.name, user_path(@project.user) %>
     </h3>
 
-    <h3>Amount Pledged:
+    <h3>Total Amount Pledged for this project:
       $<%= @project.total_pledged_in_project %>
     </h3>
 
@@ -40,7 +40,8 @@
       </div>
 
 <!-- can only see the remove reward if i am the project owner  -->
-        <% if current_user.id == @project.user_id%>
+
+        <% if is_project_owner?%>
           <div class="remove-reward">
             <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
           </div>
@@ -52,19 +53,30 @@
       <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary' %>
     </div>
 
-    <% if current_user.id == @project.user_id%>
+    <% if is_project_owner?%>
 
       <h2>Project Backers</h2>
+      <div class="project-backers">
+        <% @project.pledges.each do |pledge| %>
+          <div class="backer">
+            <p>
+              Name: <%= pledge.user.name %> Pledged: $<%= pledge.dollar_amount %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <h2>Rewards Claimed Summary</h2>
     <div class="project-backers">
-      <% @project.pledges.each do |pledge| %>
         <div class="backer">
           <p>
-            Name: <%= pledge.user.name %> Pledged: $<%= pledge.dollar_amount %>
+            <h3>Summary: </h3>A total of <%=@project.claims.count%> rewards have been claimed
           </p>
         </div>
-      <% end %>
-    <% end %>
+
     </div>
+
 
   </div>
 

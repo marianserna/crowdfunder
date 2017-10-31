@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :users, through: :pledges # backers
   belongs_to :user # project owner
   belongs_to :category
+  has_many :claims
 
   validates :title, :user_id, :description, :goal, :start_date, :end_date, presence: true
   validates :goal, numericality: { greater_than_or_equal_to: 0 }
@@ -34,7 +35,7 @@ class Project < ActiveRecord::Base
   end
 
   def remaining_time
-    "#{( self.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}"
+    ((self.end_date > Time.now.utc) ? 'remaining' : 'past deadline').to_s
   end
 
 end

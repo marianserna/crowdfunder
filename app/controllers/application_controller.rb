@@ -21,5 +21,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
+  def is_project_owner?
+   current_user == @project.user
+  end
+  helper_method :is_project_owner?
 end
