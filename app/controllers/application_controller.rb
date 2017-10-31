@@ -20,5 +20,4 @@ class ApplicationController < ActionController::Base
       not_authenticated
     end
   end
-
 end
