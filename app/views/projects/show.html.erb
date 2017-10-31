@@ -41,7 +41,7 @@
 
 <!-- can only see the remove reward if i am the project owner  -->
 
-        <% if is_project_owner%>
+        <% if is_project_owner?%>
           <div class="remove-reward">
             <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
           </div>
@@ -53,7 +53,7 @@
       <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary' %>
     </div>
 
-    <% if is_project_owner%>
+    <% if is_project_owner?%>
 
       <h2>Project Backers</h2>
       <div class="project-backers">
@@ -69,10 +69,10 @@
 
     <h2>Project Backers</h2>
     <div class="project-backers">
-      <% @project.pledges.each do |pledge| %>
+      <% @project.claims.each do |claim| %>
         <div class="backer">
           <p>
-            Name: <%= pledge.user.name %> Pledged: $<%= pledge.dollar_amount %>
+            ID: <%= claim.id %> project_id <%= claim.project_id %>
           </p>
         </div>
       <% end %>

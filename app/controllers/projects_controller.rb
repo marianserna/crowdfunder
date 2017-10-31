@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
    helper_method :claimed_summary
 
    def is_project_owner?
-     current_user == @project.user
+    current_user == @project.user
    end
    helper_method :is_project_owner?
 
