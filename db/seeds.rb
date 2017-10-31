@@ -15,27 +15,35 @@ end
 
 10.times do
   project = Project.create!(
-    title: Faker::App.name,
-    description: Faker::Lorem.paragraph,
-    goal: rand(100000),
-    start_date: Time.now.utc - rand(60).days,
-    end_date: Time.now.utc + rand(10).days
-  )
 
-  5.times do
-    project.rewards.create!(
-      description: Faker::Superhero.power,
-      dollar_amount: rand(100)
+      title: Faker::App.name,
+      description: Faker::Lorem.paragraph,
+      goal: rand(100000),
+      start_date: Time.now.utc + rand(1..6).days,
+      end_date: Time.now.utc + rand(7..10).days,
+      user_id: User.first.id
     )
-  end
+
+    5.times do
+      project.rewards.create!(
+      description: Faker::Superhero.power,
+      dollar_amount: rand(100),
+      )
+    end
 end
+
+
 
 20.times do
   project = Project.all.sample
-
+  user = User.all.sample
+  while user.id == project.user_id
+    user = User.all.sample
+  end
   Pledge.create!(
-    user: User.all.sample,
-    project: project,
-    dollar_amount: project.rewards.sample.dollar_amount + rand(10)
+  user: user,
+  project: project,
+  dollar_amount: project.rewards.sample.dollar_amount + rand(10)
   )
+
 end
