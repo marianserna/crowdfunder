@@ -71,7 +71,7 @@
     </div>
   <% end %>
 
-</div>
+
 
   <h3> Leave a Comment </h3>
   <%= render 'comments/comment_form', project: @project, comment: @comment %>
@@ -85,3 +85,4 @@
   <%= link_to "Delete Comment", project_comment_path(@project, comment), method: :delete, data: {confirm: "Are you sure you want to delete this project"}  %>
   <% end %>
 
+</div>
