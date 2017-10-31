@@ -20,4 +20,9 @@ class ApplicationController < ActionController::Base
       not_authenticated
     end
   end
+
+  def is_project_owner?
+   current_user == @project.user
+  end
+  helper_method :is_project_owner?
 end
