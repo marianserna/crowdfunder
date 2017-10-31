@@ -3,7 +3,6 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   def login(user)
     user = create(:user)
-
     post user_sessions_url, params: {email: user.email, password: "password"}
   end
 

@@ -33,4 +33,8 @@ class Project < ActiveRecord::Base
     return self.users.include?(current_user)
   end
 
+  def remaining_time
+    "#{( self.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}"
+  end
+
 end
