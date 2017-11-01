@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'updates/create'
+
+  get 'updates/destroy'
+
+  get 'updates/edit'
+
+  get 'updates/update'
+
+  get 'create/destroy'
+
+  get 'create/edit'
+
+  get 'create/update'
+
   root "home#show"
 
   get 'login' => 'user_sessions#new', :as => :login
