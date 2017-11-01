@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @comments = Comment.all
-    @comment = Comment.create(comment_params)
+    @comment = Comment.new(comment_params)
     find_project
     @comment.project = @project
     @comment.user = current_user
