@@ -1,20 +1,22 @@
 class UpdatesController < ApplicationController
   def create
     @updates = Update.all
-    @update = Update.create(update_params)
+    @update = Update.new(update_params)
     find_project
     @update.project = @project
-    @update.user = current_user
+    @update.user = current_user if current_user == @project.user
     if @update.save
       redirect_to project_path(@project)
     else
+      flash[:alert] = "Only the Owner Can Create Updates!"
       render 'projects/show'
     end
   end
 
   def destroy
+    find_project
     find_update
-    @update.destrot
+    @update.destroy
     redirect_to project_path(@project)
   end
 
@@ -36,11 +38,7 @@ class UpdatesController < ApplicationController
   private
 
   def update_params
-    params.require(:update).permit(:descripton)
-  end
-
-  def find_project
-    @project = Project.find(params[:id])
+    params.require(:update).permit(:description)
   end
 
   def find_update

@@ -48,18 +48,8 @@ ActiveRecord::Schema.define(version: 20171101051114) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "project_id"
-    t.integer "reward_id"
     t.index ["project_id"], name: "index_pledges_on_project_id"
     t.index ["user_id"], name: "index_pledges_on_user_id"
-  end
-
-  create_table "project_updates", force: :cascade do |t|
-    t.bigint "project_id"
-    t.string "title"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_updates_on_project_id"
   end
 
   create_table "projects", id: :serial, force: :cascade do |t|
@@ -81,8 +71,6 @@ ActiveRecord::Schema.define(version: 20171101051114) do
     t.float "dollar_amount"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "limit"
-    t.integer "claimed", default: 0
   end
 
   create_table "updates", force: :cascade do |t|

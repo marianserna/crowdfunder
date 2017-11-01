@@ -43,10 +43,6 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:text)
   end
 
-  def find_project
-    @project = Project.find(params[:project_id])
-  end
-
   def find_comment
     @comment = Comment.find(params[:id])
   end

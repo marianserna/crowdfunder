@@ -28,6 +28,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'faker'
   gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
+  gem 'pry-rails'
 end
 
 group :development do
