@@ -13,6 +13,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @comment = Comment.new
     @comments = Comment.all
+    @update = Update.new
+    @updates = Update.all
   end
 
   def new
