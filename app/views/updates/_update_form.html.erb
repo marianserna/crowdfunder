@@ -1,0 +1,15 @@
+<h1> Updates: </h1>
+<%= form_for [project, update] do |f| %>
+<% comment.errors.full_messages.each do |m|%>
+<p>
+  <%= m %>
+</p>
+<% end %>
+<div class ="field">
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

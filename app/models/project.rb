@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   has_many :rewards
   has_many :pledges
   has_many :users, through: :pledges # backers
+  has_many :updates
   belongs_to :user # project owner
   belongs_to :category
   has_many :claims
