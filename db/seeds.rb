@@ -1,7 +1,9 @@
 Pledge.destroy_all
 Reward.destroy_all
 User.destroy_all
+Comment.destroy_all
 Project.destroy_all
+
 
 5.times do
   User.create!(
@@ -18,7 +20,7 @@ end
       title: Faker::App.name,
       description: Faker::Lorem.paragraph,
       goal: rand(100000),
-      start_date: Time.now.utc + rand(1..6).days,
+      start_date: Time.now.utc, 
       end_date: Time.now.utc + rand(7..10).days,
       user_id: User.first.id
     )

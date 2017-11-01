@@ -3,6 +3,10 @@
     <%= link_to "New Project", new_project_path, class: 'btn btn-outline-primary' %>
   </div>
 
+  <% if params[:category_id] && @projects.empty? %>
+    <h2>Sorry, no results for <%= Category.find(params[:category_id]).name %></h2>
+  <% end %>
+
   <div class="projects grid">
     <% @projects.each do |project| %>
       <article class="project grid-item">

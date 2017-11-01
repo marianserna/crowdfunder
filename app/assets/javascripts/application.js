@@ -13,3 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function() {
+  const search_form = document.querySelector('.search-form');
+
+  const search_btn = document.querySelector('.trigger-search');
+  search_btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    search_form.classList.toggle('visible');
+  });
+});

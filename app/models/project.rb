@@ -8,7 +8,6 @@ class Project < ActiveRecord::Base
   has_many :claims
 
   has_many :comments
-  has_many :users, through: :comments
   validates :title, :user_id, :description, :goal, :start_date, :end_date, presence: true
   validates :goal, numericality: { greater_than_or_equal_to: 0 }
 
