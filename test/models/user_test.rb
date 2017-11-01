@@ -13,12 +13,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "password must match confirmation" do
-    user = create(:user, password: "12345678", password_confirmation: "87654321")
+    user = build(:user, password: "12345678", password_confirmation: "87654321")
     refute user.valid?
   end
 
   test "password must be at least 8 characters long" do
-    user = User.new(email: "bettymaker@gmail.com", password: "1234", password_confirmation: "1234")
+    user = build(:user, password: "1234", password_confirmation: "1234")
     refute user.valid?
   end
 
