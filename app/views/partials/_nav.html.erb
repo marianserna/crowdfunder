@@ -29,10 +29,6 @@
           <%= link_to 'Clear', root_url, class: 'btn btn-outline-primary' %>
         <% end %>
       <% end %>
-
-      <% if params[:category_id] && @projects.empty? %>
-        Sorry, no results for <%= Category.find(params[:category_id]).name %>
-      <% end %>
     </div>
   </nav>
 </div>
