@@ -25,4 +25,9 @@ class ApplicationController < ActionController::Base
     current_user == @project.user
   end
   helper_method :is_project_owner?
-end
+
+  def find_project
+    @project = Project.find(params[:project_id])
+  end
+
+  end
