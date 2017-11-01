@@ -23,7 +23,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'name' do
-    user = User.new(first_name: "Pablo", last_name: "Perez")
+    user = build(:user)
     assert user.name == "Pablo Perez", "User name doesn't contain first and last name"
   end
 
