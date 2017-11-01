@@ -25,7 +25,7 @@
   text-align: center;
   margin: 1rem 0;
   padding: 1rem 0;
-  width: calc(33.33% - 2rem);
+  width: calc(50% - 2rem);
   justify-content: center;
 
   @media(max-width: 895px) {
@@ -60,11 +60,31 @@
 
   .project-basics {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     text-align: left;
     width: 70%;
     margin: 0 auto;
+    margin-bottom: 30px;
+
+    .project-image {
+      width: 50%;
+    }
+
+    .project-info {
+      width: 50%;
+      padding-left: 30px;
+    }
+
+    @media(max-width: 895px) {
+      .project-image {
+        width: 100%;
+      }
+
+      .project-info {
+        width: 100%;
+        margin-top: 30px;
+      }
+    }
   }
 
   form {
@@ -162,4 +182,8 @@
 
 .project-days-left {
   color: #6ED3CF;
+}
+
+.text {
+  color: #fff;
 }
