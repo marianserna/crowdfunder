@@ -103,7 +103,7 @@
 
   <div class="update-section">
     <% if @project.updates.any?  %>
-    <% if @project.users.include?(current_user) || @project.user == current_user %>
+    <% if @project.users.include?(current_user) || is_project_owner %>
     <hr/>
       <h2> Updates: </h2>
       <% @updates.order(:created_at).reverse_order.each do |update| %>
