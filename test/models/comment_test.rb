@@ -13,9 +13,4 @@ class CommentTest < ActiveSupport::TestCase
     comment = build(:comment, text: nil)
     refute comment.valid?
   end
-
-
-
-
 end
-
