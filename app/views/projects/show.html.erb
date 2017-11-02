@@ -80,11 +80,12 @@
     <hr>
 
     <div class="comment-section">
-      <h2>Comments</h2>
       <%= render 'comments/comment_form', project: @project, comment: @comment %>
     </div>
+    <% end %>
 
-    <% if @project.comments.empty? %>
+    <% if @project.comments.any? %>
+    <h2>Comments</h2>
       <div class="comment-wrapper">
         <% @project.comments.each do |comment| %>
           <div class="card">
@@ -98,7 +99,6 @@
         <% end %>
       </div>
     <% end %>
-  <% end %>
   <% if @project.updates.any?  %>
     <% if @project.users.include?(current_user) || is_project_owner %>
       <div>
