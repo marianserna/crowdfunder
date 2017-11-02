@@ -35,28 +35,34 @@
 
   <hr>
 
-  <h2>Rewards</h2>
-  <div class="project-rewards">
-    <% @project.rewards.each do |reward| %>
-      <div class="reward">
-        <p><%= number_to_currency(reward.dollar_amount) %> | <%= reward.description %></p>
+  <% if !@project.rewards.empty? %>
+    <h2>Rewards</h2>
+    <div class="project-rewards">
+      <% @project.rewards.each do |reward| %>
+        <div class="reward">
+          <p><%= number_to_currency(reward.dollar_amount) %> | <%= reward.description %></p>
 
-        <%= form_for [@project, Claim.new] do |f| %>
-          <!-- need to send data about which reward is the user claiming -->
-          <%= f.hidden_field :reward_id, value: reward.id %>
-          <% if is_project_owner == false %>
-            <%= f.submit "Claim Reward", class: 'btn btn-outline-primary m-0' %>
+          <%= form_for [@project, Claim.new] do |f| %>
+            <!-- need to send data about which reward is the user claiming -->
+            <%= f.hidden_field :reward_id, value: reward.id %>
+            <% if is_project_owner == false %>
+              <%= f.submit "Claim Reward", class: 'btn btn-outline-primary m-0' %>
+            <% end %>
+            <!-- can only see the remove reward if i am the project owner  -->
+            <% if is_project_owner %>
+              <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
+            <% end %>
           <% end %>
-          <!-- can only see the remove reward if i am the project owner  -->
-          <% if is_project_owner %>
-            <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
-            <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary m-0' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-
+  <% if is_project_owner %>
+    <div class="reward">
+      <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary m-0' %>
+    </div>
+  <% end %>
 
   <% if is_project_owner %>
     <hr>
@@ -105,7 +111,7 @@
         <hr>
         <h2> Updates: </h2>
         <div class="update-wrapper">
-          <% @updates.order(:created_at).reverse_order.each do |update| %>
+          <% @project.updates.order(:created_at).reverse_order.each do |update| %>
             <div class="card">
               <div class="card-body">
                 <p class="card-text update-text"><%= update.created_at.strftime('%a, %B %C, %G') %>: <span><%= update.description %></span></p>
@@ -127,5 +133,4 @@
   <% if is_project_owner %>
     <%= render 'updates/update_form', project: @project, update: @update %>
   <% end %>
-
 </div>

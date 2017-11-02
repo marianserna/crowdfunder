@@ -45,9 +45,11 @@ a {
   }
 }
 
-.flash-alert, .flash-notice {
+.flash-alert, .flash-notice, .error {
   text-align: center;
   color: #FF7C5E;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .btn {
