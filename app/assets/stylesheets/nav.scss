@@ -26,10 +26,12 @@
 
 .search-form {
   opacity: 0;
+  display: none;
   transition: opacity 1s ease;
 
   &.visible {
     opacity: 1;
+    display: block;
   }
 
   form {
@@ -49,5 +51,11 @@
     .btn {
       margin: 0px;
     }
+  }
+}
+
+.projects-search {
+  @media(max-width: 895px) {
+    display: none;
   }
 }
