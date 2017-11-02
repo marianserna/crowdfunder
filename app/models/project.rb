@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
   validate :start_date_must_be_future
   validate :end_date_later_than_start_date
 
-  scope :active, -> { where("now() between start_date and end_date" ) }
+  scope :active, -> { where("current_date() between start_date and end_date" ) }
   scope :inactive, -> { where('end_date < ?', Date.today) }
 
   def start_date_must_be_future
