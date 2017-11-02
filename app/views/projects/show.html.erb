@@ -105,7 +105,7 @@
         <hr>
         <h2> Updates: </h2>
         <div class="update-wrapper">
-          <% @updates.order(:created_at).reverse_order.each do |update| %>
+          <% @project.updates.order(:created_at).reverse_order.each do |update| %>
             <div class="card">
               <div class="card-body">
                 <p class="card-text update-text"><%= update.created_at.strftime('%a, %B %C, %G') %>: <span><%= update.description %></span></p>
