@@ -156,18 +156,18 @@
   .project-rewards {
     margin-top: 50px;
 
-    .reward {
-      display: flex;
-      width: 70%;
-      margin: 0 auto;
-
-      p {
-        flex-grow: 2;
-      }
-    }
-
     .remove-reward {
       width: 150px;
+    }
+  }
+
+  .reward {
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+
+    p {
+      flex-grow: 2;
     }
   }
 
