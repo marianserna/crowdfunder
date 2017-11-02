@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
 
   def user_has_pledged_project
     unless project.users.include?(user)
-      errors.add(:base, "You can't make a comment if you haven't pledge to this project")
+      errors.add(:base, "You can't make a comment if you haven't pledged to this project")
     end
   end
 end

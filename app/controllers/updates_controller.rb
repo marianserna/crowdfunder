@@ -1,4 +1,5 @@
 class UpdatesController < ApplicationController
+
   def create
     @updates = Update.all
     @update = Update.new(update_params)
