@@ -40,7 +40,7 @@ class Project < ActiveRecord::Base
   end
 
   def remaining_time
-    ((self.end_date > Time.now.utc) ? 'remaining' : 'past deadline').to_s
+    ((self.end_date.end_of_day.utc > Time.now.utc) ? 'remaining' : 'past deadline').to_s
   end
 
 end

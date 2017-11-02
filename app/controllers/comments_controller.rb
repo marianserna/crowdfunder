@@ -20,7 +20,6 @@ class CommentsController < ApplicationController
     redirect_to project_path(@project)
   end
 
-
   def update
     find_comment
     find_project
