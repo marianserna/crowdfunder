@@ -16,7 +16,7 @@
     <% @projects.each do |project| %>
       <article class="project grid-item">
         <%= link_to project, class: 'project-link' do %>
-          <figure class="project-image" style="background-image: url(<%= project.image ? project.image : ActionController::Base.helpers.asset_path("chihuahua.jpg") %>)">
+          <figure class="project-image" style="background-image: url(<%= project.image.present? ? project.image : ActionController::Base.helpers.asset_path("chihuahua.jpg") %>)">
           </figure>
           <h2 class="project-title"><%= project.title %></h2>
           <time class="project-days-left">

@@ -105,11 +105,12 @@
       </div>
     <% end %>
   <% end %>
+
   <% if @project.updates.any?  %>
     <% if @project.users.include?(current_user) || is_project_owner %>
       <div>
         <hr>
-        <h2> Updates: </h2>
+        <h2> Updates</h2>
         <div class="update-wrapper">
           <% @project.updates.order(:created_at).reverse_order.each do |update| %>
             <div class="card">
