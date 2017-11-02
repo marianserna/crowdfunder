@@ -7,6 +7,9 @@ class ProjectsController < ApplicationController
     if params[:category_id]
       @projects = @projects.where(category_id: params[:category_id])
     end
+
+    @projects = @projects.active if params[:status] == 'active'
+    @projects = @projects.inactive if params[:status] == 'inactive'
   end
 
   def show
@@ -32,7 +35,6 @@ class ProjectsController < ApplicationController
     @project.image = params[:project][:image]
     @project.category_id = params[:project][:category_id]
     @project.user = current_user
-    # raise params.inspect
 
     if @project.save
       redirect_to projects_url
@@ -42,9 +44,11 @@ class ProjectsController < ApplicationController
    end
 
    private
-  def claimed_summary
-    Claim.where(project_id: @project.id).count
-  end
-  helper_method :claimed_summary
+
+    def claimed_summary
+      Claim.where(project_id: @project.id).count
+    end
+
+    helper_method :claimed_summary
 
 end

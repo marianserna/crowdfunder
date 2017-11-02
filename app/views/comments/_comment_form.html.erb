@@ -1,15 +1,8 @@
 <%= form_for [project, comment] do |f| %>
-<% comment.errors.full_messages.each do |m|%>
-<p>
-  <%= m %>
-</p>
-<% end %>
-  <div class="field">
-    <p><%= f.label :text %></p>
-    <p><%= f.text_field :text  %></p>
-  </div>
+  <% comment.errors.full_messages.each do |m|%>
+    <p><%= m %></p>
+  <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :text, placeholder: 'Enter a comment', class: 'comment-input' %>
+  <%= f.submit 'Submit', class: 'btn add-comment mt-0' %>
 <% end %>
