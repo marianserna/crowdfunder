@@ -3,6 +3,7 @@ class ClaimsController < ApplicationController
   before_action :load_project
   before_action :load_reward
   before_action :load_comment
+  before_action :load_update
 
   def create
     # raise params.inspect
@@ -42,6 +43,11 @@ class ClaimsController < ApplicationController
   def load_comment
     @comment = Comment.new
     @comments = @project.comments
+  end
+
+  def load_update
+    @update = Update.new
+    @updates = @project.updates
   end
 
   private
