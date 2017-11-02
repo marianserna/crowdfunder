@@ -4,8 +4,8 @@
   </div>
 
   <div class="filter">
-      <%= link_to 'Active', projects_path(status: 'active') %>
-      <%= link_to 'Inactive', projects_path(status: 'inactive') %>
+        <%= link_to 'ACTIVE', projects_path(status: 'active'), class: params[:status] == 'active' ? 'current' : '' %>
+        <%= link_to 'INACTIVE', projects_path(status: 'inactive'), class: params[:status] == 'inactive' ? 'current' : '' %>
   </div>
 
   <% if params[:category_id] && @projects.empty? %>
@@ -16,12 +16,7 @@
     <% @projects.each do |project| %>
       <article class="project grid-item">
         <%= link_to project, class: 'project-link' do %>
-          <figure class="project-image">
-            <% if project.image %>
-              <%= image_tag project.image %>
-            <% else %>
-              <%= image_tag ActionController::Base.helpers.asset_path("chihuahua.jpg") %>
-            <% end %>
+          <figure class="project-image" style="background-image: url(<%= project.image ? project.image : ActionController::Base.helpers.asset_path("chihuahua.jpg") %>)">
           </figure>
           <h2 class="project-title"><%= project.title %></h2>
           <time class="project-days-left">

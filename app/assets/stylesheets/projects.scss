@@ -11,6 +11,42 @@
   width: 100%;
 }
 
+// filter
+
+.filter {
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+
+  a {
+    display: block;
+    width: 45%;
+    text-align: center;
+    border: solid 1px #FF7C5E;
+    padding: 20px;
+
+    @media(max-width: 895px) {
+      width: 50%;
+    }
+
+    &:hover {
+      text-decoration: none;
+      color: #FF7C5E;
+    }
+
+    &.current {
+      color: #FFF;
+      background-color: #FF7C5E;
+    }
+  }
+}
+
+// Grid
+
 .projects {
   display: flex;
   justify-content: space-around;
@@ -53,6 +89,8 @@
 .project-days-left {
   font-size: 0.75em;
 }
+
+// Project show
 
 .projects-info {
   width: 70vw;
@@ -100,7 +138,7 @@
   }
 
   .new_pledge {
-    text-align: center;
+    text-align: left;
   }
 
   p {
@@ -134,8 +172,9 @@
   }
 
   .add-reward {
-    text-align: right;
+    text-align: left;
     margin: 30px;
+    margin-bottom: 50px !important;
   }
 
   .project-backers {
@@ -149,6 +188,18 @@
 
       p {
         flex-grow: 2;
+      }
+
+      ul {
+        text-align: center;
+      }
+
+      li {
+        color: #8C95AA;
+      }
+
+      span {
+        color: #FF7C5E;
       }
     }
   }
@@ -181,9 +232,50 @@
 }
 
 .project-days-left {
-  color: #6ED3CF;
+  color: #FF7C5E;
 }
 
 .text {
   color: #fff;
+}
+
+form.new_comment,
+form.edit_comment,
+form.new_update,
+form.edit_update {
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+
+  .comment-input {
+    height: 37px;
+    width: 60%;
+    padding-left: 15px;
+  }
+}
+
+.comment-wrapper,
+.update-wrapper {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
+
+  .comment-text {
+    color: #FF6600;
+  }
+
+  .card {
+    margin-bottom: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: box-shadow 1s ease;
+
+    &:hover {
+      box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+  }
+
+  @media(max-width: 895px) {
+    width: 95%;
+  }
 }
