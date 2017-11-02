@@ -50,10 +50,14 @@
           <!-- can only see the remove reward if i am the project owner  -->
           <% if is_project_owner %>
             <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
-            <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary m-0' %>
-
           <% end %>
         <% end %>
+      </div>
+    <% end %>
+
+    <% if is_project_owner %>
+      <div class="reward">
+        <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary m-0' %>
       </div>
     <% end %>
 
