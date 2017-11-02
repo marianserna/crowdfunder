@@ -28,7 +28,6 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
     # Assigns accesses the @ variable from the controller (@projects is :projects)
     assert_equal(1, assigns(:projects).length)
-    # raise assigns(:projects).inspect
   end
 
   test "should show project" do
