@@ -2,12 +2,12 @@ class Project < ActiveRecord::Base
   has_many :rewards
   has_many :pledges
   has_many :users, through: :pledges # backers
+  has_many :updates
   belongs_to :user # project owner
   belongs_to :category
   has_many :claims
 
   has_many :comments
-  has_many :users, through: :comments
   validates :title, :user_id, :description, :goal, :start_date, :end_date, presence: true
   validates :goal, numericality: { greater_than_or_equal_to: 0 }
 
@@ -15,6 +15,7 @@ class Project < ActiveRecord::Base
   validate :end_date_later_than_start_date
 
   scope :active, -> { where("now() between start_date and end_date" ) }
+  scope :inactive, -> { where('end_date < ?', Date.today) }
 
   def start_date_must_be_future
     return unless start_date

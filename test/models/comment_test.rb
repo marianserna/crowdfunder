@@ -1,21 +1,21 @@
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
-  comment = new_comment
 
-  comment = new_comment
-  comment.save
-  assert comment.valid?
+  test 'comment can be created' do
 
+    comment = create(:comment)
+    assert comment.valid?
 
+  end
 
-  def new_comment
-    Comment.new(
-      text: hello
-    )
+  test 'text field cannot be empty' do
+    comment = build(:comment, text: nil)
+    refute comment.valid?
   end
 
 
 
 
 end
+
