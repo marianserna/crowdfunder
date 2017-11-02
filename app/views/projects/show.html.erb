@@ -35,7 +35,7 @@
 
   <hr>
 
-  <% if !@project.rewards.empty? %>
+  <% if !@project.rewards.empty? || is_project_owner %>
     <h2>Rewards</h2>
     <div class="project-rewards">
       <% @project.rewards.each do |reward| %>
@@ -55,12 +55,12 @@
           <% end %>
         </div>
       <% end %>
-    </div>
-  <% end %>
 
-  <% if is_project_owner %>
-    <div class="reward mb-5">
-      <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary m-0' %>
+      <% if is_project_owner %>
+        <div class="reward mb-5">
+          <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary m-0' %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 
