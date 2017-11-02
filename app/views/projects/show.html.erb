@@ -77,14 +77,14 @@
     </div>
   <% end %>
 
-  <% if current_user && !current_user.pledge_projects.empty? %>
+  <% if current_user && current_user.pledge_projects.any? %>
     <% if current_user.pledge_projects.where(id: @project.id).exists? %>
       <div class="comment-section">
         <h3> Leave a Comment </h3>
         <%= render 'comments/comment_form', project: @project, comment: @comment %>
       </div>
 
-      <% unless @project.comments.empty? %>
+      <% if @project.comments.any? %>
 
       <hr/>
         <h2> Comments: </h2>
@@ -101,11 +101,12 @@
 
 
 
-  <div>
-    <% unless @project.updates.empty?  %>
+  <div class="update-section">
+    <% if @project.updates.any? && @project.users.include?(current_user) %>
+    <hr/>
       <h2> Updates: </h2>
-      <% @updates.each do |update| %>
-        <p class="text"> <%= update.description %></p>
+      <% @updates.order(:created_at).reverse_order.each do |update| %>
+        <p class="text"><%= update.created_at.strftime('%a, %B %C, %G') %>: <%= update.description %></p>
 
           <% if current_user == @project.user %>
             <%= link_to "Edit Update", edit_project_update_path(@project, update), class: 'btn' %>
@@ -113,6 +114,7 @@
           <% end %>
       <% end %>
     <% end %>
+
   </div>
 
   <% if current_user == @project.user %>
