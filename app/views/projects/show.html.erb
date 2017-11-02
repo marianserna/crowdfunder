@@ -26,12 +26,12 @@
     </div>
 
   </div>
-
-  <%= form_for [@project, Pledge.new] do |f| %>
-    <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01, class: 'input-num' %>
-    <%= f.submit "Pledge", class: 'btn btn-outline-primary m-0' %>
+  <% if is_project_owner == false %>
+    <%= form_for [@project, Pledge.new] do |f| %>
+      <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01, class: 'input-num' %>
+      <%= f.submit "Pledge", class: 'btn btn-outline-primary m-0' %>
+    <% end %>
   <% end %>
-
   <hr>
 
   <h2>Rewards</h2>
@@ -44,22 +44,22 @@
         <%= form_for [@project, Claim.new] do |f| %>
           <!-- need to send data about which reward is the user claiming -->
           <%= f.hidden_field :reward_id, value: reward.id %>
-          <%= f.submit "Claim Reward", class: 'btn btn-outline-primary m-0' %>
-
+          <% if is_project_owner == false %>
+            <%= f.submit "Claim Reward", class: 'btn btn-outline-primary m-0' %>
+          <% end %>
           <!-- can only see the remove reward if i am the project owner  -->
-          <% if current_user == @project.user %>
+          <% if is_project_owner %>
             <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete', class: 'btn btn-outline-danger m-0' %>
+            <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary m-0' %>
+
           <% end %>
         <% end %>
       </div>
     <% end %>
   </div>
 
-  <div class="add-reward">
-    <%= link_to "Add new reward", new_project_reward_path(@project), class: 'btn btn-outline-primary' %>
-  </div>
 
-  <% if current_user == @project.user %>
+  <% if is_project_owner %>
     <hr>
 
     <h2>Project Backers</h2>
@@ -107,7 +107,7 @@
       <% @updates.each do |update| %>
         <p class="text"> <%= update.description %></p>
 
-          <% if current_user == @project.user %>
+          <% if is_project_owner %>
             <%= link_to "Edit Update", edit_project_update_path(@project, update), class: 'btn' %>
             <%= link_to "Delete Update", project_update_path(@project, update), method: :delete, data: {confirm: "Are you sure you want to delete this update?"}, class: 'btn'  %>
           <% end %>
@@ -115,7 +115,7 @@
     <% end %>
   </div>
 
-  <% if current_user == @project.user %>
+  <% if is_project_owner %>
 
 
   <%= render 'updates/update_form', project: @project, update: @update %>
