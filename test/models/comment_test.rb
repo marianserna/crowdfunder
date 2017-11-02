@@ -4,8 +4,22 @@ class CommentTest < ActiveSupport::TestCase
 
   test 'comment can be created' do
 
-    comment = create(:comment)
+    user = create(:user)
+    project = create(:project)
+    pledge = create(:pledge, user: user, project: project)
+    comment = create(:comment, user: user, project: project)
+
     assert comment.valid?
+
+  end
+
+  test 'comment cannot be created' do
+
+    user = create(:user)
+    project = create(:project)
+    comment = build(:comment, user: user, project: project)
+
+    refute comment.valid?
 
   end
 
@@ -13,4 +27,6 @@ class CommentTest < ActiveSupport::TestCase
     comment = build(:comment, text: nil)
     refute comment.valid?
   end
+
+
 end
