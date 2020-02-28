@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Core Project
 gem 'rails', '~> 5.1.4'
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.12'
 
 # Styles
 gem 'sass-rails'
