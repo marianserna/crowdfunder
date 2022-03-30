@@ -142,7 +142,8 @@ GEM
       method_source (~> 0.9.0)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    puma (3.10.0)
+    puma (4.3.12)
+      nio4r (~> 2.0)
     rack (2.0.3)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
@@ -247,7 +248,7 @@ DEPENDENCIES
   pg
   pry (~> 0.11.2)
   pry-rails
-  puma (~> 3.0)
+  puma (~> 4.3)
   rails (~> 5.1.4)
   rails-controller-testing
   sass-rails
